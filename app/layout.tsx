@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { ThemeProvider, createTheme } from "@mui/material/styles"
-import CssBaseline from "@mui/material/CssBaseline"
+import "./globals.css";
+import type React from "react";
+import { useState, useEffect } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const [mode, setMode] = useState<"light" | "dark">("light")
+  const [mode, setMode] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", mode)
-  }, [mode])
+    document.documentElement.setAttribute("data-theme", mode);
+  }, [mode]);
 
   const theme = createTheme({
     palette: {
@@ -98,21 +99,27 @@ export default function RootLayout({
         },
       },
     },
-  })
+  });
 
   return (
     <html lang="en">
       <head>
         <title>StaffFlow - AI-Powered Employee Shift & Workload Manager</title>
-        <meta name="description" content="Simplify workforce planning with AI-driven scheduling" />
-        <meta name="generator" content="v0.dev" />
+        <meta
+          name="description"
+          content="Simplify workforce planning with AI-driven scheduling"
+        />
+        <meta name="Staff-Flow" content="flow" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="/global.css" />
       </head>
       <body>
         <ThemeProvider theme={theme}>
@@ -121,5 +128,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

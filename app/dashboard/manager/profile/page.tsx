@@ -3,7 +3,23 @@
 import type React from "react"
 import { useState } from "react"
 import { Camera, Loader2, Save } from "lucide-react"
-import { Box, Typography, Tabs, Tab, Card, CardContent, CardHeader, CardActions, TextField, Button, Avatar, IconButton, TextareaAutosize, Snackbar, Alert } from "@mui/material"
+import {
+  Box,
+  Typography,
+  Tabs,
+  Tab,
+  Card,
+  CardContent,
+  CardHeader,
+  CardActions,
+  TextField,
+  Button,
+  Avatar,
+  IconButton,
+  TextareaAutosize,
+  Snackbar,
+  Alert,
+} from "@mui/material"
 import { styled } from "@mui/material/styles"
 
 const StyledTextarea = styled(TextareaAutosize)(({ theme }) => ({
@@ -54,58 +70,54 @@ export default function ManagerProfilePage() {
         <Card>
           <CardHeader
             title={<Typography variant="h6">Profile Information</Typography>}
-            subheader={<Typography variant="body2" color="text.secondary">Update your personal information</Typography>}
+            subheader={
+              <Typography variant="body2" color="text.secondary">
+                Update your personal information
+              </Typography>
+            }
           />
           <CardContent>
             <form onSubmit={handleSaveProfile}>
-              <Box sx={{ display: "flex", flexDirection: { xs: "column", sm: "row" }, alignItems: { xs: "center", sm: "flex-start" }, gap: 3, mb: 3 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: { xs: "center", sm: "flex-start" },
+                  gap: 3,
+                  mb: 3,
+                }}
+              >
                 <Box sx={{ position: "relative" }}>
                   <Avatar sx={{ width: 96, height: 96 }}>
                     <img src="/placeholder.svg?height=96&width=96" alt="Manager" />
                     <Typography variant="h6">JM</Typography>
                   </Avatar>
                   <IconButton
-                    sx={{ position: "absolute", bottom: 0, right: 0, bgcolor: "white", borderRadius: "50%", border: `1px solid ${(theme: { palette: { divider: any } }) => theme.palette.divider}` }}
+                    sx={{
+                      position: "absolute",
+                      bottom: 0,
+                      right: 0,
+                      bgcolor: "white",
+                      borderRadius: "50%",
+                      border: `1px solid ${(theme: { palette: { divider: any } }) => theme.palette.divider}`,
+                    }}
                   >
                     <Camera style={{ width: 16, height: 16 }} />
                   </IconButton>
                 </Box>
                 <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
                   <Box sx={{ display: "flex", flexDirection: { xs: "column", md: "row" }, gap: 2 }}>
-                    <TextField
-                      label="First Name"
-                      defaultValue="John"
-                      fullWidth
-                      sx={{ flex: 1 }}
-                    />
-                    <TextField
-                      label="Last Name"
-                      defaultValue="Manager"
-                      fullWidth
-                      sx={{ flex: 1 }}
-                    />
+                    <TextField label="First Name" defaultValue="John" fullWidth sx={{ flex: 1 }} />
+                    <TextField label="Last Name" defaultValue="Manager" fullWidth sx={{ flex: 1 }} />
                   </Box>
-                  <TextField
-                    label="Email"
-                    type="email"
-                    defaultValue="manager@staffflow.com"
-                    fullWidth
-                  />
-                  <TextField
-                    label="Phone Number"
-                    defaultValue="+1 (555) 123-4567"
-                    fullWidth
-                  />
-                  <TextField
-                    label="Position"
-                    defaultValue="General Manager"
-                    fullWidth
-                  />
+                  <TextField label="Email" type="email" defaultValue="manager@staffflow.com" fullWidth />
+                  <TextField label="Phone Number" defaultValue="+1 (555) 123-4567" fullWidth />
+                  <TextField label="Position" defaultValue="General Manager" fullWidth />
                   <Box>
-                    <Typography variant="body2" color="text.secondary" gutterBottom>Bio</Typography>
-                    <StyledTextarea
-                      defaultValue="Experienced manager with over 10 years in the industry. Passionate about team development and operational excellence."
-                    />
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      Bio
+                    </Typography>
+                    <StyledTextarea defaultValue="Experienced manager with over 10 years in the industry. Passionate about team development and operational excellence." />
                   </Box>
                 </Box>
               </Box>
@@ -114,7 +126,13 @@ export default function ManagerProfilePage() {
                   type="submit"
                   disabled={isLoading}
                   variant="contained"
-                  startIcon={isLoading ? <Loader2 className="animate-spin" style={{ width: 16, height: 16 }} /> : <Save style={{ width: 16, height: 16 }} />}
+                  startIcon={
+                    isLoading ? (
+                      <Loader2 className="animate-spin" style={{ width: 16, height: 16 }} />
+                    ) : (
+                      <Save style={{ width: 16, height: 16 }} />
+                    )
+                  }
                 >
                   {isLoading ? "Saving..." : "Save Changes"}
                 </Button>
@@ -128,24 +146,16 @@ export default function ManagerProfilePage() {
         <Card>
           <CardHeader
             title={<Typography variant="h6">Security Settings</Typography>}
-            subheader={<Typography variant="body2" color="text.secondary">Manage your password and security preferences</Typography>}
+            subheader={
+              <Typography variant="body2" color="text.secondary">
+                Manage your password and security preferences
+              </Typography>
+            }
           />
           <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <TextField
-              label="Current Password"
-              type="password"
-              fullWidth
-            />
-            <TextField
-              label="New Password"
-              type="password"
-              fullWidth
-            />
-            <TextField
-              label="Confirm New Password"
-              type="password"
-              fullWidth
-            />
+            <TextField label="Current Password" type="password" fullWidth />
+            <TextField label="New Password" type="password" fullWidth />
+            <TextField label="Confirm New Password" type="password" fullWidth />
           </CardContent>
           <CardActions sx={{ justifyContent: "flex-end" }}>
             <Button variant="contained">Update Password</Button>
@@ -157,7 +167,11 @@ export default function ManagerProfilePage() {
         <Card>
           <CardHeader
             title={<Typography variant="h6">Notification Preferences</Typography>}
-            subheader={<Typography variant="body2" color="text.secondary">Manage how you receive notifications</Typography>}
+            subheader={
+              <Typography variant="body2" color="text.secondary">
+                Manage how you receive notifications
+              </Typography>
+            }
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">

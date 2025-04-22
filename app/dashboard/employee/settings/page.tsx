@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import {
   Box,
   Typography,
@@ -76,28 +77,17 @@ export default function EmployeeSettingsPageMUI() {
               />
               <FormControlLabel
                 control={
-                  <Switch
-                    checked={settings.shiftReminders}
-                    onChange={(e) => handleChange(e, "shiftReminders")}
-                  />
+                  <Switch checked={settings.shiftReminders} onChange={(e) => handleChange(e, "shiftReminders")} />
                 }
                 label="Shift Reminders"
               />
               <FormControlLabel
-                control={
-                  <Switch
-                    checked={settings.showEarnings}
-                    onChange={(e) => handleChange(e, "showEarnings")}
-                  />
-                }
+                control={<Switch checked={settings.showEarnings} onChange={(e) => handleChange(e, "showEarnings")} />}
                 label="Show Earnings"
               />
               <FormControlLabel
                 control={
-                  <Switch
-                    checked={settings.breakReminders}
-                    onChange={(e) => handleChange(e, "breakReminders")}
-                  />
+                  <Switch checked={settings.breakReminders} onChange={(e) => handleChange(e, "breakReminders")} />
                 }
                 label="Break Reminders"
               />
@@ -112,7 +102,7 @@ export default function EmployeeSettingsPageMUI() {
                 onChange={(e) =>
                   setSettings({
                     ...settings,
-                    preferredShiftLength: parseInt(String(e.target.value)),
+                    preferredShiftLength: Number.parseInt(String(e.target.value)),
                   })
                 }
               >

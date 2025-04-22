@@ -1,7 +1,4 @@
-
 "use client"
-
-import React from "react"
 import { Box, Button, Card, CardContent, Typography, Container } from "@mui/material"
 import Link from "next/link"
 import Image from "next/image"
@@ -146,8 +143,8 @@ export default function HomePage() {
                   lineHeight: 1.6,
                 }}
               >
-                StaffFlow revolutionizes workforce management with intelligent scheduling, real-time insights, and seamless
-                payroll tracking for businesses of all sizes.
+                StaffFlow revolutionizes workforce management with intelligent scheduling, real-time insights, and
+                seamless payroll tracking for businesses of all sizes.
               </Typography>
               <Box
                 sx={{
@@ -223,23 +220,14 @@ export default function HomePage() {
                 flexShrink: 0,
               }}
             >
-              <Image
-                src="/mainpage.png"
-                alt="StaffFlow Dashboard"
-                fill
-                style={{ objectFit: "contain" }}
-              />
+              <Image src="/mainpage.png" alt="StaffFlow Dashboard" fill style={{ objectFit: "contain" }} />
             </Box>
           </Box>
         </Container>
       </Box>
 
       {/* Features Section */}
-      <Box
-        component="section"
-        id="features"
-        sx={{ py: 5, bgcolor: "#f8fafc" }}
-      >
+      <Box component="section" id="features" sx={{ py: 5, bgcolor: "#f8fafc" }}>
         <Container maxWidth="lg" sx={{ px: { xs: 3, sm: 4 } }}>
           <Typography
             variant="h2"
@@ -381,10 +369,7 @@ export default function HomePage() {
       </Box>
 
       {/* CTA Section */}
-      <Box
-        component="section"
-        sx={{ py: 5, bgcolor: "#03306b", color: "white", textAlign: "center" }}
-      >
+      <Box component="section" sx={{ py: 5, bgcolor: "#03306b", color: "white", textAlign: "center" }}>
         <Container maxWidth="md" sx={{ px: { xs: 3, sm: 4 } }}>
           <Typography
             variant="h2"
@@ -405,7 +390,8 @@ export default function HomePage() {
               opacity: 0.9,
             }}
           >
-            Join thousands of businesses that use StaffFlow to optimize their scheduling and improve employee satisfaction.
+            Join thousands of businesses that use StaffFlow to optimize their scheduling and improve employee
+            satisfaction.
           </Typography>
           <Button
             component="a"
@@ -591,7 +577,15 @@ export default function HomePage() {
           }}
         >
           <Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5, justifyContent: { xs: "center", md: "flex-start" }, mb: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1.5,
+                justifyContent: { xs: "center", md: "flex-start" },
+                mb: 1,
+              }}
+            >
               <Image src="/logo.png" alt="StaffFlow Logo" width={32} height={32} />
               <Typography
                 sx={{

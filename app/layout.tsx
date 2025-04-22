@@ -1,6 +1,5 @@
 "use client";
 
-import "./globals.css";
 import type React from "react";
 import { useState, useEffect } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -109,7 +108,7 @@ export default function RootLayout({
           name="description"
           content="Simplify workforce planning with AI-driven scheduling"
         />
-        <meta name="Staff-Flow" content="flow" />
+        <meta name="generator" content="v0.dev" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -120,6 +119,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        {/* <link rel="stylesheet" href="/global.css" /> */}
       </head>
       <body>
         <ThemeProvider theme={theme}>
@@ -130,3 +130,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+import "./globals.css";

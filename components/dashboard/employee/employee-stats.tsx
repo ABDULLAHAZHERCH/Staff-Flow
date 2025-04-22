@@ -1,7 +1,4 @@
-
 "use client"
-
-import React from "react"
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts"
 import { Box, Typography } from "@mui/material"
 

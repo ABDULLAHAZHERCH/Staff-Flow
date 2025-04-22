@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -137,9 +136,7 @@ export function EmployeeNotificationsList({ filter = "all" }: { filter?: "all" |
     <Box>
       {filteredNotifications.length === 0 ? (
         <Box sx={{ textAlign: "center", py: 4, color: "#4a5568" }}>
-          <Typography sx={{ fontFamily: '"Inter", sans-serif', fontSize: "1rem" }}>
-            No notifications found
-          </Typography>
+          <Typography sx={{ fontFamily: '"Inter", sans-serif', fontSize: "1rem" }}>No notifications found</Typography>
         </Box>
       ) : (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -162,9 +159,7 @@ export function EmployeeNotificationsList({ filter = "all" }: { filter?: "all" |
               <Box sx={{ display: "flex", gap: 2 }}>
                 <Box>
                   {notification.user ? (
-                    <Avatar sx={{ width: 40, height: 40 }}>
-                      {notification.user.initials}
-                    </Avatar>
+                    <Avatar sx={{ width: 40, height: 40 }}>{notification.user.initials}</Avatar>
                   ) : (
                     <Box
                       sx={{

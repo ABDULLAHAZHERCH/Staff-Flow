@@ -1,6 +1,7 @@
 "use client"
 
-import React, { useState } from "react"
+import type React from "react"
+import { useState } from "react"
 import {
   Button,
   Card,
@@ -65,7 +66,16 @@ export default function ManagerSettingsPage() {
   }
 
   return (
-    <Box sx={{ width: "100%", padding: "16px", backgroundColor: "#fff", display: "flex", flexDirection: "column", gap: "24px" }}>
+    <Box
+      sx={{
+        width: "100%",
+        padding: "16px",
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+      }}
+    >
       <Typography
         variant="h2"
         sx={{

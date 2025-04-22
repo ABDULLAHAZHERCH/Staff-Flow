@@ -1,34 +1,63 @@
+"use client";
 
-"use client"
-
-import type React from "react"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { Box, Button, Checkbox, TextField, Typography, IconButton, Divider, FormControlLabel } from "@mui/material"
-import { Visibility, VisibilityOff, Lock, Mail } from "@mui/icons-material"
+import type React from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import {
+  Box,
+  Button,
+  Checkbox,
+  TextField,
+  Typography,
+  IconButton,
+  Divider,
+  FormControlLabel,
+  Alert,
+} from "@mui/material";
+import { Visibility, VisibilityOff, Lock, Mail } from "@mui/icons-material";
 
 export function SignInForm() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    // Simulate API call
-    setTimeout(() => {
-      setLoading(false)
-      if (email.includes("manager")) {
-        router.push("/dashboard/manager")
-      } else {
-        router.push("/dashboard/employee")
+    try {
+      const response = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Authentication failed");
       }
-    }, 1000)
-  }
+
+      // Redirect based on user role
+      if (data.user.role === "manager") {
+        router.push("/dashboard/manager");
+        console.log("Redirecting to /dashboard/manager");
+      } else {
+        router.push("/dashboard/employee");
+      }
+    } catch (error: any) {
+      setError(error.message || "An error occurred during sign in");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Box
@@ -64,6 +93,12 @@ export function SignInForm() {
           Sign in to your StaffFlow account
         </Typography>
       </Box>
+
+      {error && (
+        <Alert severity="error" sx={{ mb: 3 }}>
+          {error}
+        </Alert>
+      )}
 
       <form onSubmit={handleSubmit}>
         <Box sx={{ mb: 3 }}>
@@ -257,59 +292,6 @@ export function SignInForm() {
           </Typography>
         </Box>
       </form>
-
-      <Box sx={{ mt: 4 }}>
-        <Divider sx={{ my: 2, bgcolor: "#e2e8f0" }}>
-          <Typography
-            sx={{
-              fontFamily: '"Inter", sans-serif',
-              fontSize: "0.875rem",
-              color: "#737373",
-              px: 2,
-            }}
-          >
-            Or continue with
-          </Typography>
-        </Divider>
-        <Box sx={{ display: "flex", gap: 2 }}>
-          <Button
-            variant="outlined"
-            fullWidth
-            sx={{
-              borderColor: "#e2e8f0",
-              color: "#333",
-              fontFamily: '"Inter", sans-serif',
-              fontWeight: 500,
-              textTransform: "none",
-              borderRadius: "0.375rem",
-              "&:hover": {
-                bgcolor: "#f8fafc",
-                borderColor: "#e2e8f0",
-              },
-            }}
-          >
-            Google
-          </Button>
-          <Button
-            variant="outlined"
-            fullWidth
-            sx={{
-              borderColor: "#e2e8f0",
-              color: "#333",
-              fontFamily: '"Inter", sans-serif',
-              fontWeight: 500,
-              textTransform: "none",
-              borderRadius: "0.375rem",
-              "&:hover": {
-                bgcolor: "#f8fafc",
-                borderColor: "#e2e8f0",
-              },
-            }}
-          >
-            Microsoft
-          </Button>
-        </Box>
-      </Box>
     </Box>
-  )
+  );
 }

@@ -1,30 +1,23 @@
 "use client"
 
-import React, { useState } from "react"
-import {
-  Box,
-  Typography,
-  Paper,
-  Tabs,
-  Tab,
-  Divider,
-} from "@mui/material"
+import { useState } from "react"
+import { Box, Typography, Paper, Tabs, Tab, Divider } from "@mui/material"
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
 import AccessTimeIcon from "@mui/icons-material/AccessTime"
 import CreditCardIcon from "@mui/icons-material/CreditCard"
 import NotificationsIcon from "@mui/icons-material/Notifications"
 
-import { EmployeeSchedule } from "@/components/dashboard/employee/employee-schedule"
+import { EmployeeScheduleConnected } from "@/components/dashboard/employee/employee-schedule-connected"
 import { EmployeeStats } from "@/components/dashboard/employee/employee-stats"
 
-export default function EmployeeDashboardPageMUI() {
+export default function EmployeeDashboardPage() {
   const [tabIndex, setTabIndex] = useState(0)
 
   const stats = [
     { label: "Upcoming Shifts", value: 5, sub: "Next 7 days", icon: <CalendarMonthIcon color="primary" /> },
     { label: "Hours Worked", value: 32, sub: "This week", icon: <AccessTimeIcon color="primary" /> },
     { label: "Earnings", value: "$640", sub: "This week", icon: <CreditCardIcon color="primary" /> },
-    { label: "Notifications", value: 3, sub: "Unread messages", icon: <NotificationsIcon color="primary" /> },
+    { label: "Notifications", value: 0, sub: "Unread messages", icon: <NotificationsIcon color="primary" /> },
   ]
 
   return (
@@ -77,7 +70,7 @@ export default function EmployeeDashboardPageMUI() {
               View your upcoming shifts for the next 7 days
             </Typography>
             <Divider sx={{ my: 2 }} />
-            <EmployeeSchedule />
+            <EmployeeScheduleConnected />
           </Paper>
         )}
 

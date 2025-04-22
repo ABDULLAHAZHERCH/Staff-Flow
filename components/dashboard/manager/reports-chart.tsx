@@ -1,12 +1,10 @@
-'use client';
-
-import React from 'react';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
-import { Box, styled } from '@mui/material';
+"use client"
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from "recharts"
+import { Box, styled } from "@mui/material"
 
 const data = [
   {
-    name: 'Week 1',
+    name: "Week 1",
     sales: 120,
     support: 80,
     kitchen: 70,
@@ -15,7 +13,7 @@ const data = [
     cleaning: 30,
   },
   {
-    name: 'Week 2',
+    name: "Week 2",
     sales: 110,
     support: 85,
     kitchen: 75,
@@ -24,7 +22,7 @@ const data = [
     cleaning: 35,
   },
   {
-    name: 'Week 3',
+    name: "Week 3",
     sales: 130,
     support: 90,
     kitchen: 80,
@@ -33,7 +31,7 @@ const data = [
     cleaning: 40,
   },
   {
-    name: 'Week 4',
+    name: "Week 4",
     sales: 125,
     support: 95,
     kitchen: 85,
@@ -41,18 +39,18 @@ const data = [
     admin: 55,
     cleaning: 45,
   },
-];
+]
 
 const ChartContainer = styled(Box)(({ theme }) => ({
-  width: '100%',
-  height: '100%',
-  backgroundColor: 'white',
-  borderRadius: '0.375rem',
-  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.05)', // From global.css
-  '&:hover': {
-    boxShadow: '0 3px 6px rgba(0, 0, 0, 0.1)', // From global.css
+  width: "100%",
+  height: "100%",
+  backgroundColor: "white",
+  borderRadius: "0.375rem",
+  boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)", // From global.css
+  "&:hover": {
+    boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)", // From global.css
   },
-}));
+}))
 
 export function ManagerReportsChart() {
   return (
@@ -78,12 +76,12 @@ export function ManagerReportsChart() {
           />
           <Tooltip
             contentStyle={{
-              backgroundColor: 'white',
-              border: '1px solid #e2e8f0',
-              borderRadius: '0.375rem',
+              backgroundColor: "white",
+              border: "1px solid #e2e8f0",
+              borderRadius: "0.375rem",
               fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
             }}
-            labelStyle={{ color: '#03306b', fontWeight: 600 }}
+            labelStyle={{ color: "#03306b", fontWeight: 600 }}
           />
           <Legend />
           <Bar dataKey="sales" name="Sales" fill="#03306b" radius={[4, 4, 0, 0]} />
@@ -95,5 +93,5 @@ export function ManagerReportsChart() {
         </BarChart>
       </ResponsiveContainer>
     </ChartContainer>
-  );
+  )
 }

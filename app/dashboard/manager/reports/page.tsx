@@ -1,8 +1,17 @@
-"use client"
-import React from "react"
-import { ManagerReportsChartConnected } from "@/components/dashboard/manager/reports-chart-connected"
-import { ManagerReportsTable } from "@/components/dashboard/manager/reports-table"
-import { Box, Typography, Card, CardHeader, CardContent, Tabs, Tab, styled } from "@mui/material"
+"use client";
+import React from "react";
+import { ManagerReportsChartConnected } from "@/components/dashboard/manager/reports-chart-connected";
+import { ManagerReportsTable } from "@/components/dashboard/manager/reports-table";
+import {
+  Box,
+  Typography,
+  Card,
+  CardHeader,
+  CardContent,
+  Tabs,
+  Tab,
+  styled,
+} from "@mui/material";
 
 const PageContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -11,7 +20,7 @@ const PageContainer = styled(Box)(({ theme }) => ({
   gap: theme.spacing(3),
   backgroundColor: "white",
   padding: theme.spacing(2),
-}))
+}));
 
 const StyledCard = styled(Card)(({ theme }) => ({
   width: "100%",
@@ -19,13 +28,13 @@ const StyledCard = styled(Card)(({ theme }) => ({
   "&:hover": {
     boxShadow: "0 3px 6px rgba(0, 0, 0, 0.1)", // From global.css
   },
-}))
+}));
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   "& .MuiTabs-indicator": {
     backgroundColor: "#03306b", // Primary color from global.css
   },
-}))
+}));
 
 const StyledTab = styled(Tab)(({ theme }) => ({
   fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
@@ -38,26 +47,36 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   "&:hover": {
     color: "#c61111", // Secondary color from global.css
   },
-}))
+}));
 
 const ManagerReportsPage: React.FC = () => {
-  const [value, setValue] = React.useState("overview")
+  const [value, setValue] = React.useState("overview");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    setValue(newValue);
+  };
 
   return (
     <PageContainer>
       <Typography
         variant="h4"
-        sx={{ fontFamily: '"Poppins", "Inter", "Arial", sans-serif', fontWeight: 600, color: "#0d1b2a" }}
+        sx={{
+          fontFamily: '"Poppins", "Inter", "Arial", sans-serif',
+          fontWeight: 600,
+          color: "#0d1b2a",
+        }}
       >
         Reports
       </Typography>
 
-      <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 2 }}>
-        <StyledTabs value={value} onChange={handleChange} aria-label="reports tabs">
+      <Box
+        sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 2 }}
+      >
+        <StyledTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="reports tabs"
+        >
           <StyledTab label="Overview" value="overview" />
           <StyledTab label="Departments" value="departments" />
           <StyledTab label="Employees" value="employees" />
@@ -69,7 +88,11 @@ const ManagerReportsPage: React.FC = () => {
               title={
                 <Typography
                   variant="h6"
-                  sx={{ fontFamily: '"Poppins", "Inter", "Arial", sans-serif', fontWeight: 600, color: "#0d1b2a" }}
+                  sx={{
+                    fontFamily: '"Poppins", "Inter", "Arial", sans-serif',
+                    fontWeight: 600,
+                    color: "#0d1b2a",
+                  }}
                 >
                   Monthly Hours Overview
                 </Typography>
@@ -84,7 +107,7 @@ const ManagerReportsPage: React.FC = () => {
               <ManagerReportsChartConnected />
             </CardContent>
           </StyledCard>
-          <StyledCard sx={{ mt: 2 }}>
+          {/* <StyledCard sx={{ mt: 2 }}>
             <CardHeader
               title={
                 <Typography
@@ -103,7 +126,7 @@ const ManagerReportsPage: React.FC = () => {
             <CardContent>
               <ManagerReportsTable />
             </CardContent>
-          </StyledCard>
+          </StyledCard> */}
         </Box>
 
         <Box sx={{ display: value === "departments" ? "block" : "none" }}>
@@ -112,7 +135,11 @@ const ManagerReportsPage: React.FC = () => {
               title={
                 <Typography
                   variant="h6"
-                  sx={{ fontFamily: '"Poppins", "Inter", "Arial", sans-serif', fontWeight: 600, color: "#0d1b2a" }}
+                  sx={{
+                    fontFamily: '"Poppins", "Inter", "Arial", sans-serif',
+                    fontWeight: 600,
+                    color: "#0d1b2a",
+                  }}
                 >
                   Department Performance
                 </Typography>
@@ -124,12 +151,15 @@ const ManagerReportsPage: React.FC = () => {
               }
             />
             <CardContent>
-              <Typography variant="body2" sx={{ color: "#64748b", fontSize: "0.875rem" }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "#64748b", fontSize: "0.875rem" }}
+              >
                 Department reports will be available in the next update.
               </Typography>
             </CardContent>
           </StyledCard>
-        </Box>
+        </Box>        
 
         <Box sx={{ display: value === "employees" ? "block" : "none" }}>
           <StyledCard>
@@ -137,7 +167,11 @@ const ManagerReportsPage: React.FC = () => {
               title={
                 <Typography
                   variant="h6"
-                  sx={{ fontFamily: '"Poppins", "Inter", "Arial", sans-serif', fontWeight: 600, color: "#0d1b2a" }}
+                  sx={{
+                    fontFamily: '"Poppins", "Inter", "Arial", sans-serif',
+                    fontWeight: 600,
+                    color: "#0d1b2a",
+                  }}
                 >
                   Employee Performance
                 </Typography>
@@ -149,7 +183,10 @@ const ManagerReportsPage: React.FC = () => {
               }
             />
             <CardContent>
-              <Typography variant="body2" sx={{ color: "#64748b", fontSize: "0.875rem" }}>
+              <Typography
+                variant="body2"
+                sx={{ color: "#64748b", fontSize: "0.875rem" }}
+              >
                 Employee reports will be available in the next update.
               </Typography>
             </CardContent>
@@ -157,7 +194,7 @@ const ManagerReportsPage: React.FC = () => {
         </Box>
       </Box>
     </PageContainer>
-  )
-}
+  );
+};
 
-export default ManagerReportsPage
+export default ManagerReportsPage;

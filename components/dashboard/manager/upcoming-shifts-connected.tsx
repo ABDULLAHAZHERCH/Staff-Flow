@@ -262,9 +262,9 @@ export function UpcomingShiftsConnected() {
                 />
               </Box>
               <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end", gap: 1 }}>
-                <ActionButton>
+                {/* <ActionButton>
                   <Edit sx={{ fontSize: 16, color: "#03306b" }} />
-                </ActionButton>
+                </ActionButton> */}
                 <ActionButton onClick={() => handleDeleteShift(shift._id)}>
                   <Delete sx={{ fontSize: 16, color: "#c61111" }} />
                 </ActionButton>

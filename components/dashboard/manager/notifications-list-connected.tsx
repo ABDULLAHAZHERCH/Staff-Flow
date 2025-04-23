@@ -57,11 +57,10 @@ export function ManagerNotificationsListConnected({
 
         const data = await response.json();
         setNotifications(data.notifications);
-        console.log("Fetched notifications:", data.notifications);
         setError(null);
       } catch (err) {
         console.error("Error fetching notifications:", err);
-        setError("Failed to load notifications. Please try again later.");
+        // setError(`Failed to load notifications: ${err.message}`)
       } finally {
         setLoading(false);
       }

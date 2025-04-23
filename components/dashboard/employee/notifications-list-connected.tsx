@@ -1,55 +1,72 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Box, Typography, Avatar, Chip, IconButton, CircularProgress, Alert } from "@mui/material"
-import { CalendarToday, AccessTime, Message, Delete } from "@mui/icons-material"
-import { formatDistanceToNow } from "date-fns"
+import { useState, useEffect } from "react";
+import {
+  Box,
+  Typography,
+  Avatar,
+  Chip,
+  IconButton,
+  CircularProgress,
+  Alert,
+} from "@mui/material";
+import {
+  CalendarToday,
+  AccessTime,
+  Message,
+  Delete,
+} from "@mui/icons-material";
+import { formatDistanceToNow } from "date-fns";
 
 type Notification = {
-  _id: string
-  recipient: string
+  _id: string;
+  recipient: string;
   sender?: {
-    _id: string
-    firstName: string
-    lastName: string
-    email: string
-  }
-  type: string
-  title: string
-  message: string
-  read: boolean
-  createdAt: string
-}
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+  type: string;
+  title: string;
+  message: string;
+  read: boolean;
+  createdAt: string;
+};
 
-export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?: "all" | "unread" }) {
-  const [notifications, setNotifications] = useState<Notification[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+export function EmployeeNotificationsListConnected({
+  filter = "all",
+}: {
+  filter?: "all" | "unread";
+}) {
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        setLoading(true)
-        const queryParams = filter === "unread" ? "?read=false" : ""
-        const response = await fetch(`/api/notifications${queryParams}`)
+        setLoading(true);
+        const queryParams = filter === "unread" ? "?read=false" : "";
+        const response = await fetch(`/api/notifications${queryParams}`);
 
         if (!response.ok) {
-          throw new Error("Failed to fetch notifications")
+          throw new Error("Failed to fetch notifications");
         }
 
-        const data = await response.json()
-        setNotifications(data.notifications)
-        setError(null)
+        const data = await response.json();
+        setNotifications(data.notifications);
+        setError(null);
       } catch (err) {
-        console.error("Error fetching notifications:", err)
-        setError("Failed to load notifications. Please try again later.")
+        console.error("Error fetching notifications:", err);
+        setError("Failed to load notifications. Please try again later.");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchNotifications()
-  }, [filter])
+    fetchNotifications();
+  }, [filter]);
 
   const markAsRead = async (id: string) => {
     try {
@@ -59,64 +76,77 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ read: true }),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to mark notification as read")
+        throw new Error("Failed to mark notification as read");
       }
 
       // Update the notification in the state
       setNotifications(
-        notifications.map((notification) => (notification._id === id ? { ...notification, read: true } : notification)),
-      )
+        notifications.map((notification) =>
+          notification._id === id
+            ? { ...notification, read: true }
+            : notification
+        )
+      );
     } catch (err) {
-      console.error("Error marking notification as read:", err)
+      console.error("Error marking notification as read:", err);
     }
-  }
+  };
 
   const deleteNotification = async (id: string) => {
     try {
       const response = await fetch(`/api/notifications/${id}`, {
         method: "DELETE",
-      })
+      });
 
       if (!response.ok) {
-        throw new Error("Failed to delete notification")
+        throw new Error("Failed to delete notification");
       }
 
       // Remove the notification from the state
-      setNotifications(notifications.filter((notification) => notification._id !== id))
+      setNotifications(
+        notifications.filter((notification) => notification._id !== id)
+      );
     } catch (err) {
-      console.error("Error deleting notification:", err)
+      console.error("Error deleting notification:", err);
     }
-  }
+  };
 
   const getNotificationIcon = (type: string) => {
     switch (type) {
       case "shift_assigned":
       case "shift_updated":
       case "shift_cancelled":
-        return <CalendarToday sx={{ color: "#3b82f6", fontSize: 20 }} />
+        return <CalendarToday sx={{ color: "#3b82f6", fontSize: 20 }} />;
       case "message":
-        return <Message sx={{ color: "#22c55e", fontSize: 20 }} />
+        return <Message sx={{ color: "#22c55e", fontSize: 20 }} />;
       case "payroll_processed":
-        return <AccessTime sx={{ color: "#f97316", fontSize: 20 }} />
+        return <AccessTime sx={{ color: "#f97316", fontSize: 20 }} />;
       default:
-        return <Message sx={{ color: "#4a5568", fontSize: 20 }} />
+        return <Message sx={{ color: "#4a5568", fontSize: 20 }} />;
     }
-  }
+  };
 
   const formatTime = (dateString: string) => {
-    const date = new Date(dateString)
-    return formatDistanceToNow(date, { addSuffix: true })
-  }
+    const date = new Date(dateString);
+    return formatDistanceToNow(date, { addSuffix: true });
+  };
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "200px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "200px",
+        }}
+      >
         <CircularProgress />
       </Box>
-    )
+    );
   }
 
   if (error) {
@@ -124,15 +154,19 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
       <Alert severity="error" sx={{ mb: 2 }}>
         {error}
       </Alert>
-    )
+    );
   }
 
   if (notifications.length === 0) {
     return (
       <Box sx={{ textAlign: "center", py: 4, color: "#4a5568" }}>
-        <Typography sx={{ fontFamily: '"Inter", sans-serif', fontSize: "1rem" }}>No notifications found</Typography>
+        <Typography
+          sx={{ fontFamily: '"Inter", sans-serif', fontSize: "1rem" }}
+        >
+          No notifications found
+        </Typography>
       </Box>
-    )
+    );
   }
 
   return (
@@ -158,7 +192,8 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
               <Box>
                 {notification.sender ? (
                   <Avatar sx={{ width: 40, height: 40 }}>
-                    {notification.sender.firstName.charAt(0) + notification.sender.lastName.charAt(0)}
+                    {notification.sender.firstName.charAt(0) +
+                      notification.sender.lastName.charAt(0)}
                   </Avatar>
                 ) : (
                   <Box
@@ -177,7 +212,14 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
                 )}
               </Box>
               <Box sx={{ flex: 1 }}>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mb: 1,
+                  }}
+                >
                   <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                     <Typography
                       sx={{
@@ -205,8 +247,8 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
                   <Box sx={{ display: "flex", gap: 1 }}>
                     <IconButton
                       onClick={(e) => {
-                        e.stopPropagation()
-                        deleteNotification(notification._id)
+                        e.stopPropagation();
+                        deleteNotification(notification._id);
                       }}
                       sx={{
                         color: "#737373",
@@ -228,7 +270,13 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
                 >
                   {notification.message}
                 </Typography>
-                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
                   <Typography
                     sx={{
                       fontFamily: '"Inter", sans-serif',
@@ -245,5 +293,5 @@ export function EmployeeNotificationsListConnected({ filter = "all" }: { filter?
         ))}
       </Box>
     </Box>
-  )
+  );
 }

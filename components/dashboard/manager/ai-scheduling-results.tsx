@@ -1,6 +1,12 @@
-"use client"
-import { Box, Typography, Button, Avatar, Chip, styled } from "@mui/material"
-import { Edit, Download, Check, Delete, CalendarToday } from "@mui/icons-material"
+"use client";
+import { Box, Typography, Button, Avatar, Chip, styled } from "@mui/material";
+import {
+  Edit,
+  Download,
+  Check,
+  Delete,
+  CalendarToday,
+} from "@mui/icons-material";
 
 const scheduledShifts = [
   {
@@ -68,25 +74,25 @@ const scheduledShifts = [
     startTime: "09:00",
     endTime: "17:00",
   },
-]
+];
 
 const Container = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: theme.spacing(2),
   backgroundColor: "white",
-}))
+}));
 
 const TableContainer = styled(Box)(({ theme }) => ({
   border: "1px solid #e2e8f0", // Border from global.css
   borderRadius: "0.375rem",
   overflow: "hidden",
-}))
+}));
 
 const TableHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
   backgroundColor: "#f8fafc", // Light background
-}))
+}));
 
 const TableRow = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -96,7 +102,7 @@ const TableRow = styled(Box)(({ theme }) => ({
   "&:last-child": {
     borderBottom: "none",
   },
-}))
+}));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
@@ -112,7 +118,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: theme.spacing(1),
-}))
+}));
 
 const StyledOutlineButton = styled(Button)(({ theme }) => ({
   fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
@@ -126,7 +132,7 @@ const StyledOutlineButton = styled(Button)(({ theme }) => ({
     color: "#c61111", // Secondary color
     borderColor: "#c61111",
   },
-}))
+}));
 
 const StyledIconButton = styled(Button)(({ theme }) => ({
   minWidth: "auto",
@@ -135,13 +141,13 @@ const StyledIconButton = styled(Button)(({ theme }) => ({
   "&:hover": {
     color: "#c61111", // Secondary color
   },
-}))
+}));
 
 const StyledChip = styled(Chip)(({ theme }) => ({
   backgroundColor: "#03306b", // Primary color
   color: "white",
   fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
-}))
+}));
 
 export function AISchedulingResults() {
   return (
@@ -157,17 +163,34 @@ export function AISchedulingResults() {
       >
         <Box sx={{ textAlign: { xs: "center", sm: "left" } }}>
           <StyledChip label="AI Generated" sx={{ mb: 1 }} />
-          <Typography variant="h6" sx={{ fontFamily: '"Poppins", "Inter", "Arial", sans-serif', color: "#0d1b2a" }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: '"Poppins", "Inter", "Arial", sans-serif',
+              color: "#0d1b2a",
+            }}
+          >
             Schedule for Apr 20 - Apr 26, 2025
           </Typography>
           <Typography
             variant="body2"
-            sx={{ color: "#64748b", fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}
+            sx={{
+              color: "#64748b",
+              fontFamily:
+                '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+            }}
           >
             Generated on Apr 19, 2025 • All Departments
           </Typography>
         </Box>
-        <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", justifyContent: { xs: "center", sm: "flex-end" } }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 1,
+            flexWrap: "wrap",
+            justifyContent: { xs: "center", sm: "flex-end" },
+          }}
+        >
           <StyledOutlineButton variant="outlined" size="small">
             <Edit sx={{ fontSize: 16 }} />
             Edit
@@ -190,7 +213,8 @@ export function AISchedulingResults() {
               display: "flex",
               gap: 4,
               fontWeight: 500,
-              fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+              fontFamily:
+                '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
               color: "#1a1a1a",
             }}
           >
@@ -204,43 +228,85 @@ export function AISchedulingResults() {
         </TableHeader>
         {scheduledShifts.map((shift) => (
           <TableRow key={shift.id}>
-            <Box sx={{ flex: 1.5, display: "flex", alignItems: "center", gap: 2 }}>
+            <Box
+              sx={{ flex: 1.5, display: "flex", alignItems: "center", gap: 2 }}
+            >
               <Avatar sx={{ width: 32, height: 32 }}>
-                <img src={shift.employee.avatar || "/placeholder.svg"} alt={shift.employee.name} />
-                <Typography sx={{ fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}>
+                <img
+                  src={shift.employee.avatar || "/placeholder.svg"}
+                  alt={shift.employee.name}
+                />
+                <Typography
+                  sx={{
+                    fontFamily:
+                      '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                  }}
+                >
                   {shift.employee.initials}
                 </Typography>
               </Avatar>
               <Typography
-                sx={{ fontWeight: 500, fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}
+                sx={{
+                  fontWeight: 500,
+                  fontFamily:
+                    '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                }}
               >
                 {shift.employee.name}
               </Typography>
             </Box>
             <Box sx={{ flex: 1 }}>
-              <Typography sx={{ fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}>
+              <Typography
+                sx={{
+                  fontFamily:
+                    '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                }}
+              >
                 {shift.department}
               </Typography>
             </Box>
             <Box sx={{ flex: 1 }}>
               <Typography
-                sx={{ fontWeight: 500, fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}
+                sx={{
+                  fontWeight: 500,
+                  fontFamily:
+                    '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                }}
               >
                 {shift.day}
               </Typography>
             </Box>
-            <Box sx={{ flex: 1, display: "flex", alignItems: "center", gap: 1 }}>
+            <Box
+              sx={{ flex: 1, display: "flex", alignItems: "center", gap: 1 }}
+            >
               <CalendarToday sx={{ fontSize: 16, color: "#64748b" }} />
-              <Typography sx={{ fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}>
+              <Typography
+                sx={{
+                  fontFamily:
+                    '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                }}
+              >
                 {shift.date}
               </Typography>
             </Box>
             <Box sx={{ flex: 1 }}>
-              <Typography sx={{ fontFamily: '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif' }}>
+              <Typography
+                sx={{
+                  fontFamily:
+                    '"Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif',
+                }}
+              >
                 {shift.startTime} - {shift.endTime}
               </Typography>
             </Box>
-            <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end", gap: 1 }}>
+            <Box
+              sx={{
+                flex: 1,
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: 1,
+              }}
+            >
               <StyledIconButton variant="text">
                 <Edit sx={{ fontSize: 16 }} />
               </StyledIconButton>
@@ -252,5 +318,5 @@ export function AISchedulingResults() {
         ))}
       </TableContainer>
     </Container>
-  )
+  );
 }
